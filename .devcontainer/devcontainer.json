@@ -1,0 +1,32 @@
+{
+  "name": "KDE Plasma Desktop Environment",
+  "image": "mcr.microsoft.com/devcontainers/base:noble",
+  "features": {},
+  "forwardPorts": [6080, 5900],
+  "portsAttributes": {
+    "6080": {
+      "label": "noVNC Desktop",
+      "onAutoForward": "notify"
+    },
+    "5900": {
+      "label": "VNC Server",
+      "onAutoForward": "ignore"
+    }
+  },
+  "remoteEnv": {
+    "DISPLAY": ":1",
+    "LANG": "en_US.UTF-8"
+  },
+  "postCreateCommand": "bash .devcontainer/scripts/install-desktop.sh",
+  "postStartCommand": "bash .devcontainer/scripts/start-desktop.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": []
+    }
+  },
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/codespace/.ssh,readonly"
+  ],
+  "overrideCommand": false,
+  "containerUser": "root"
+}
